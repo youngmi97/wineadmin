@@ -1,13 +1,38 @@
 import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
+import { wineAPI } from "../utils";
+
+function objToQueryString(obj) {
+  const keyValuePairs = [];
+  for (const key in obj) {
+    keyValuePairs.push(
+      encodeURIComponent(key) + "=" + encodeURIComponent(obj[key])
+    );
+  }
+  return keyValuePairs.join("&");
+}
+
 function Navbar() {
+  const getWines = () => {
+    const queryString = objToQueryString({
+      name: "Riesling",
+    });
+    fetch(`/dev/search-wine?${queryString}`).then((response) => {
+      if (response.ok) {
+        response.json().then((json) => {
+          console.log(json.body.Items);
+        });
+      }
+    });
+  };
+
   return (
     <NavbarContainer>
       <Text>My Wines</Text>
       <InputContainer>
         <Icon>
-          <FiSearch />
+          <FiSearch onClick={getWines} />
         </Icon>
         <Input type="text" placeholder="Search for wines" />
       </InputContainer>
