@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import WineNavBar from "./WineNavBar";
 import WineSuggestionColumn from "./WineSuggestionColumn";
+import { sampleData } from "../data/sample";
 
 function WineContent() {
   return (
@@ -9,19 +10,22 @@ function WineContent() {
       <WineNavBar />
       <SubContainer>
         <WineSuggestionColumn
-          name={"레드 와인"}
+          name={"Red"}
           themeColor={"#58181F"}
           textColor={"white"}
+          items={sampleData.RED}
         />
         <WineSuggestionColumn
-          name={"로제 와인"}
+          name={"Rosé"}
           themeColor={"#9d5c75"}
           textColor={"white"}
+          items={sampleData.ROSE}
         />
         <WineSuggestionColumn
-          name={"화이트 와인"}
+          name={"White"}
           themeColor={"#EEEDC4"}
           textColor={"black"}
+          items={sampleData.WHITE}
         />
       </SubContainer>
     </Container>
