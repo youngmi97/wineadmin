@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
-
 function Navbar() {
   return (
     <NavbarContainer>
-      <Text>
-        Hello,
-        <span> 가르고뜨</span>
-      </Text>
+      <Text>My Wines</Text>
+      <InputContainer>
+        <Icon>
+          <FiSearch />
+        </Icon>
+        <Input type="text" placeholder="Search for wines" />
+      </InputContainer>
     </NavbarContainer>
   );
 }

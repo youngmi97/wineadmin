@@ -2,12 +2,19 @@ import "./App.css";
 import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
+import WineContent from "./components/WineContent";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <Container>
-      <Sidebar />
-      <MainContent />
+      <Router>
+        <Sidebar />
+        <Switch>
+          <Route path="/" exact component={MainContent} />
+          <Route path="/wines" component={WineContent} />
+        </Switch>
+      </Router>
     </Container>
   );
 }

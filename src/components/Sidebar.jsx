@@ -6,6 +6,9 @@ import { FaWallet, FaWineBottle } from "react-icons/fa";
 import { AiOutlinePieChart } from "react-icons/ai";
 import AvatarImage from "../assets/profileAvatar.jpeg";
 import { darkThemeColor } from "../utils";
+
+import { Link as Linking } from "react-router-dom";
+
 function Sidebar() {
   return (
     <Container>
@@ -17,11 +20,18 @@ function Sidebar() {
         <Links>
           <Link>
             <RiHomeLine />
-            <h3>Dashboard</h3>
+            <Linking to="/" style={{ textDecoration: "none", color: "white" }}>
+              <h3>Dashboard</h3>
+            </Linking>
           </Link>
           <Link>
             <FaWineBottle />
-            <h3>My Wines</h3>
+            <Linking
+              to="/wines"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <h3>My Wines</h3>
+            </Linking>
           </Link>
           <Link>
             <FaWallet />
