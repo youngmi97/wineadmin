@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
-import { wineAPI } from "../utils";
+// import { wineAPI } from "../utils";
 
 function objToQueryString(obj) {
   const keyValuePairs = [];
@@ -13,7 +13,7 @@ function objToQueryString(obj) {
   return keyValuePairs.join("&");
 }
 
-function Navbar() {
+function WineNavBar() {
   const getWines = () => {
     const queryString = objToQueryString({
       name: "Riesling",
@@ -22,6 +22,8 @@ function Navbar() {
       if (response.ok) {
         response.json().then((json) => {
           console.log(json.body.Items);
+          //   return json.body.Items;
+          //   return array of result json data
         });
       }
     });
@@ -89,4 +91,4 @@ const Input = styled.input`
   }
 `;
 
-export default Navbar;
+export default WineNavBar;
