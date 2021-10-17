@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import WineImage from "../assets/wine_gif.gif";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
+import { Link as Linking } from "react-router-dom";
 
 function Suggestions() {
   return (
@@ -24,7 +25,9 @@ function Suggestions() {
           <SubTitle>White Wine</SubTitle>
         </Detail>
       </Project>
-      <AllProjects>See all wines</AllProjects>
+      <Linking to="/wines" style={{ textDecoration: "none", color: "white" }}>
+        <AllProjects>See all wines</AllProjects>
+      </Linking>
     </YourProjects>
   );
 }

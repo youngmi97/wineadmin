@@ -125,6 +125,7 @@ const SubContainer = styled.div`
 const SubContainerColumn = styled.div`
   height: 100%;
   width: 100%;
+  margin-right: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
