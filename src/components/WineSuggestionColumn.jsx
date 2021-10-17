@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FaWineGlassAlt } from "react-icons/fa";
+// import { FaWineGlassAlt } from "react-icons/fa";
 import { themeColor, hoverEffect } from "../utils";
 import WineImage from "../assets/wine_gif.gif";
 

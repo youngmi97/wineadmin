@@ -14,17 +14,19 @@ export const sampleWine = {
 export const sampleData = {
   RED: [
     {
-      DISPLAY_NAME: "Schieferkopf, Riesling Grand Cru, Altenberg de Bergheim",
-      LWIN: "1000030",
-      SUB_REGION: "Altenberg de Bergheim",
-      COUNTRY: "France",
+      DISPLAY_NAME: "Balgownie Estate, Shiraz, Bendigo",
+      LWIN: "10001000926030",
+      SUB_REGION: "Bendigo",
+      COUNTRY: "Australia",
       PRODUCER_TITLE: "nan",
-      REGION: "Alsace",
+      REGION: "Victoria",
       STATUS: "Live",
-      PRODUCER_NAME: "Schieferkopf",
-      COLOUR: "White",
-      WINE: "Riesling",
+      PRODUCER_NAME: "Balgownie Estate",
+      COLOUR: "Red",
+      WINE: "Shiraz",
     },
+  ],
+  WHITE: [
     {
       DISPLAY_NAME: "Schieferkopf, Riesling Grand Cru, Altenberg de Bergheim",
       LWIN: "1000030",
@@ -38,6 +40,5 @@ export const sampleData = {
       WINE: "Riesling",
     },
   ],
-  WHITE: [],
   ROSE: [],
 };

@@ -18,12 +18,14 @@ function WineNavBar() {
     const queryString = objToQueryString({
       name: "Riesling",
     });
-    fetch(`/dev/search-wine?${queryString}`).then((response) => {
+    fetch(
+      `https://79jx2bj9ed.execute-api.ap-northeast-2.amazonaws.com/dev/search-wine?${queryString}`
+    ).then((response) => {
       if (response.ok) {
         response.json().then((json) => {
           console.log(json.body.Items);
-          //   return json.body.Items;
-          //   return array of result json data
+          // return json.body.Items;
+          // return array of result json data
         });
       }
     });
@@ -33,8 +35,8 @@ function WineNavBar() {
     <NavbarContainer>
       <Text>My Wines</Text>
       <InputContainer>
-        <Icon>
-          <FiSearch onClick={getWines} />
+        <Icon onClick={getWines}>
+          <FiSearch />
         </Icon>
         <Input type="text" placeholder="Search for wines" />
       </InputContainer>
