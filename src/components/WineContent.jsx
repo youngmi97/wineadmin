@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import WineNavBar from "./WineNavBar";
 import WineSuggestionColumn from "./WineSuggestionColumn";
 import { sampleData } from "../data/sample";
+import SearchModal from "./SearchModal";
 
 function WineContent() {
+  const [showModal, setModalState] = useState(false);
+  const [wineList, setWineList] = useState([]);
+
+  function closeModal() {
+    setModalState(false);
+    setWineList([]);
+  }
+
+  function openModal(items) {
+    setModalState(true);
+    console.log("OPEN");
+    setWineList(items);
+  }
+
   return (
     <Container>
-      <WineNavBar />
+      <WineNavBar openModal={openModal} closeModal={closeModal} />
+      {showModal ? (
+        <SearchModal closeModal={closeModal} wineList={wineList} />
+      ) : null}
+
       <SubContainer>
         <WineSuggestionColumn
           name={"Red"}

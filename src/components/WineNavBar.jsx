@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 // import { wineAPI } from "../utils";
+import SearchModal from "./SearchModal";
 
 function objToQueryString(obj) {
   const keyValuePairs = [];
@@ -13,17 +14,23 @@ function objToQueryString(obj) {
   return keyValuePairs.join("&");
 }
 
-function WineNavBar() {
+function WineNavBar(props) {
+  //props.showModal not working here?
+  let textInput = React.createRef();
+
   const getWines = () => {
+    // console.log(textInput.current.value);
     const queryString = objToQueryString({
-      name: "Riesling",
+      name: textInput.current.value,
     });
+
     fetch(
       `https://79jx2bj9ed.execute-api.ap-northeast-2.amazonaws.com/dev/search-wine?${queryString}`
     ).then((response) => {
-      if (response.ok) {
+      if (response.ok && textInput.current.value != "") {
         response.json().then((json) => {
           console.log(json.body.Items);
+          props.openModal(json.body.Items);
           // return json.body.Items;
           // return array of result json data
         });
@@ -38,7 +45,7 @@ function WineNavBar() {
         <Icon onClick={getWines}>
           <FiSearch />
         </Icon>
-        <Input type="text" placeholder="Search for wines" />
+        <Input ref={textInput} type="text" placeholder="Search for wines" />
       </InputContainer>
     </NavbarContainer>
   );
