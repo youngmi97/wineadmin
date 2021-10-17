@@ -35,16 +35,16 @@ function WineContent() {
           items={sampleData.RED}
         />
         <WineSuggestionColumn
-          name={"Rosé"}
-          themeColor={"#9d5c75"}
-          textColor={"white"}
-          items={sampleData.ROSE}
-        />
-        <WineSuggestionColumn
           name={"White"}
           themeColor={"#EEEDC4"}
           textColor={"black"}
           items={sampleData.WHITE}
+        />
+        <WineSuggestionColumn
+          name={"Rosé"}
+          themeColor={"#9d5c75"}
+          textColor={"white"}
+          items={sampleData.ROSE}
         />
       </SubContainer>
     </Container>

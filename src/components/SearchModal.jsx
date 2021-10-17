@@ -1,5 +1,5 @@
 import React from "react";
-import WineImage from "../assets/wine_gif.gif";
+import WineImage from "../assets/bottle_example.png";
 import styled from "styled-components";
 import { colorCode } from "../utils";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import WineImage from "../assets/wine_gif.gif";
+import WineImage from "../assets/bottle_example.png";
 import { cardShadow, hoverEffect, themeColor } from "../utils";
 import { Link as Linking } from "react-router-dom";
 
@@ -12,8 +12,8 @@ function Suggestions() {
           <img src={WineImage} alt="" />
         </Avatar>
         <Detail>
-          <Title>Red Wine 1</Title>
-          <SubTitle>Red Wine</SubTitle>
+          <Title>Schieferkopf, Riesling Grand Cru, Altenberg de Bergheim</Title>
+          <SubTitle>Schieferkopf</SubTitle>
         </Detail>
       </Project>
       <Project>
@@ -21,8 +21,8 @@ function Suggestions() {
           <img src={WineImage} alt="" />
         </Avatar>
         <Detail>
-          <Title>White Wine 1</Title>
-          <SubTitle>White Wine</SubTitle>
+          <Title>Balgownie Estate, Shiraz, Bendigo</Title>
+          <SubTitle>Balgownie Estate</SubTitle>
         </Detail>
       </Project>
       <Linking to="/wines" style={{ textDecoration: "none", color: "white" }}>

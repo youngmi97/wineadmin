@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 // import { FaWineGlassAlt } from "react-icons/fa";
 import { themeColor, hoverEffect } from "../utils";
-import WineImage from "../assets/wine_gif.gif";
+import WineImage from "../assets/bottle_example.png";
 
 //pass list of wines from props
 // populate Winecard as many as items from props.items

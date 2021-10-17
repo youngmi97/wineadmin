@@ -10,8 +10,8 @@ function Earnings() {
         <Chart>
           <IoStatsChart />
         </Chart>
-        <EarningsText>Earnings</EarningsText>
-        <Earning>$7,890</Earning>
+        <EarningsText>Visitors</EarningsText>
+        <Earning>62</Earning>
         <EarningsIncrease>+ 10% since last month</EarningsIncrease>
       </CardContent>
     </EarningsCard>
@@ -58,6 +58,7 @@ const Earning = styled.h2`
 `;
 
 const EarningsIncrease = styled.h5`
+  margin-top: 1rem;
   text-align: center;
   font-weight: normal;
   background-color: rgba(0, 0, 0, 0.2);
