@@ -7,7 +7,12 @@ function Navbar() {
     <NavbarContainer>
       <Text>
         안녕,
-        <span> 가르고뜨</span>
+        <span>
+          {" "}
+          {JSON.parse(localStorage.getItem("barData"))
+            ? JSON.parse(localStorage.getItem("barData"))["NAME"]
+            : "와인바"}
+        </span>
       </Text>
     </NavbarContainer>
   );
