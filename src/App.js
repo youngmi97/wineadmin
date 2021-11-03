@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 import MainContent from "./components/MainContent";
@@ -11,24 +11,29 @@ function App() {
   let textInput = React.createRef();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("winebar")));
-  const [barData, setBarData] = useState({});
+  const [barData, setBarData] = useState(
+    JSON.parse(localStorage.getItem("barData"))
+  );
 
   console.log("user: ", user);
-  fetch(
-    `https://uidlxhemcj.execute-api.ap-northeast-2.amazonaws.com/dev/search-bar?id=${user}`
-  ).then((response) => {
-    if (response.ok) {
-      // console.log("response: ", response);
-      response.json().then((json) => {
-        if (json.body) {
-          // console.log(json.body.Items[0]);
-          // setBarData(json.body.Items[0]);
-          localStorage.setItem("barData", JSON.stringify(json.body.Items[0]));
-          setBarData(JSON.stringify(json.body.Items[0]));
-        }
-      });
-    }
-  });
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://uidlxhemcj.execute-api.ap-northeast-2.amazonaws.com/dev/search-bar?id=${user}`
+  //   ).then((response) => {
+  //     if (response.ok) {
+  //       // console.log("response: ", response);
+  //       response.json().then((json) => {
+  //         if (json.body) {
+  //           // console.log(json.body.Items[0]);
+  //           // setBarData(json.body.Items[0]);
+  //           localStorage.setItem("barData", JSON.stringify(json.body.Items[0]));
+  //           setBarData(JSON.stringify(json.body.Items[0]));
+  //         }
+  //       });
+  //     }
+  //   });
+  // }, []);
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
