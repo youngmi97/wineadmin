@@ -9,8 +9,8 @@ function Info() {
           <Row>
             <Digit>98</Digit>
             <InfoContainer>
-              <Title>Rank</Title>
-              <SubTitle>In top 20%</SubTitle>
+              <Title>순위</Title>
+              <SubTitle>TOP 20%</SubTitle>
             </InfoContainer>
           </Row>
         </CardContent>
@@ -20,8 +20,8 @@ function Info() {
           <Row>
             <Digit>32</Digit>
             <InfoContainer>
-              <Title>Wines</Title>
-              <SubTitle>5 Suggested</SubTitle>
+              <Title>내 와인</Title>
+              <SubTitle>0 개 추천</SubTitle>
             </InfoContainer>
           </Row>
         </CardContent>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 // import { wineAPI } from "../utils";
-import SearchModal from "./SearchModal";
 
 function objToQueryString(obj) {
   const keyValuePairs = [];
@@ -40,7 +39,7 @@ function WineNavBar(props) {
 
   return (
     <NavbarContainer>
-      <Text>My Wines</Text>
+      <Text>내가 추천한 와인</Text>
       <InputContainer>
         <Icon onClick={getWines}>
           <FiSearch />

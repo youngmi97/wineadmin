@@ -10,9 +10,9 @@ function Earnings() {
         <Chart>
           <IoStatsChart />
         </Chart>
-        <EarningsText>Visitors</EarningsText>
-        <Earning>62</Earning>
-        <EarningsIncrease>+ 10% since last month</EarningsIncrease>
+        <EarningsText>방문자 수</EarningsText>
+        <Earning>N/A</Earning>
+        <EarningsIncrease>저번달 보다 + 0% </EarningsIncrease>
       </CardContent>
     </EarningsCard>
   );

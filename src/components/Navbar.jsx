@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <NavbarContainer>
       <Text>
-        Hello,
+        안녕,
         <span> 가르고뜨</span>
       </Text>
     </NavbarContainer>

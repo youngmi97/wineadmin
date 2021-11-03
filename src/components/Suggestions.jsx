@@ -26,7 +26,7 @@ function Suggestions() {
         </Detail>
       </Project>
       <Linking to="/wines" style={{ textDecoration: "none", color: "white" }}>
-        <AllProjects>See all wines</AllProjects>
+        <AllProjects>보러가기</AllProjects>
       </Linking>
     </YourProjects>
   );

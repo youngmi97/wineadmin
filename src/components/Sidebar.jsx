@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { RiHomeLine, RiFileCopyLine } from "react-icons/ri";
 
@@ -14,14 +14,18 @@ function Sidebar() {
     <Container>
       <ProfileContainer>
         <Avatar src={AvatarImage} />
-        <Name>가르고뜨</Name>
+        <Name>
+          {JSON.parse(localStorage.getItem("barData"))
+            ? JSON.parse(localStorage.getItem("barData"))["NAME"]
+            : "와인바"}
+        </Name>
       </ProfileContainer>
       <LinksContainer>
         <Links>
           <Link>
             <RiHomeLine />
             <Linking to="/" style={{ textDecoration: "none", color: "white" }}>
-              <h3>Dashboard</h3>
+              <h3>대시보드</h3>
             </Linking>
           </Link>
           <Link>
@@ -30,17 +34,17 @@ function Sidebar() {
               to="/wines"
               style={{ textDecoration: "none", color: "white" }}
             >
-              <h3>My Wines</h3>
+              <h3>내 와인들</h3>
             </Linking>
           </Link>
           <Link>
             <FaWallet />
-            <h3>Invoices</h3>
+            <h3>통계</h3>
           </Link>
         </Links>
         <ContactContainer>
-          <span>Having troubles?</span>
-          <a href="#">Contact us </a>
+          <span>궁금한게 있으신가요?</span>
+          <a href="#">문의하기 </a>
         </ContactContainer>
       </LinksContainer>
     </Container>

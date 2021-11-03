@@ -23,9 +23,7 @@ function WineSuggestionColumn(props) {
               </Avatar>
               <SubContainerColumn>
                 <TextContainer>{data.DISPLAY_NAME}</TextContainer>
-                <TextContainerOrigin>
-                  {data.COUNTRY}, {data.REGION}
-                </TextContainerOrigin>
+                <TextContainerOrigin>{data.COUNTRY}</TextContainerOrigin>
               </SubContainerColumn>
             </SubContainer>
           </WineCard>

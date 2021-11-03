@@ -8,6 +8,17 @@ import SearchModal from "./SearchModal";
 function WineContent() {
   const [showModal, setModalState] = useState(false);
   const [wineList, setWineList] = useState([]);
+  var roseWine = [];
+  var whiteWine = [];
+  var redWine = [];
+
+  // const [redWines, setRedWines] = useState([]);
+  // const [whiteWines, setWhiteWines] = useState([]);
+  // const [roseWines, setRoseWines] = useState([]);
+
+  function parseStringSet(str) {
+    return str.replace(/[^0-9 a-z A-Z _\,\.]+/g, "").split(",");
+  }
 
   function closeModal() {
     setModalState(false);
@@ -20,6 +31,66 @@ function WineContent() {
     setWineList(items);
   }
 
+  fetch(
+    `https://uidlxhemcj.execute-api.ap-northeast-2.amazonaws.com/dev/search-bar?id=${JSON.parse(
+      localStorage.getItem("winebar")
+    )}`
+  ).then((response) => {
+    if (response.ok) {
+      // console.log("response: ", response);
+      response.json().then((json) => {
+        if (json.body) {
+          // console.log(json.body.Items[0]);
+          // setBarData(json.body.Items[0]);
+          localStorage.setItem("barData", JSON.stringify(json.body.Items[0]));
+
+          let rose = JSON.parse(localStorage.getItem("barData"))["ROSE"];
+          let white = JSON.parse(localStorage.getItem("barData"))["WHITE"];
+          let red = JSON.parse(localStorage.getItem("barData"))["RED"];
+
+          // console.log("ROSE: ", parseStringSet(rose));
+          rose = parseStringSet(rose);
+          rose.forEach(function (wine, index) {
+            const wineInfo = wine.split("_");
+            if (wineInfo[0] !== "") {
+              roseWine.push({
+                DISPLAY_NAME: wineInfo[0],
+                COUNTRY: wineInfo[1],
+              });
+            }
+          });
+
+          // console.log("RED: ", parseStringSet(red));
+          red = parseStringSet(red);
+          // setRoseWines(parseStrngSet(roseWine));
+          red.forEach(function (wine, index) {
+            const wineInfo = wine.split("_");
+            if (wineInfo[0] !== "") {
+              whiteWine.push({
+                DISPLAY_NAME: wineInfo[0],
+                COUNTRY: wineInfo[1],
+              });
+            }
+          });
+
+          // console.log("WHITE: ", parseStringSet(white));
+          white = parseStringSet(white);
+          // setRoseWines(parseStrngSet(roseWine));
+          red.forEach(function (wine, index) {
+            const wineInfo = wine.split("_");
+            if (wineInfo[0] !== "") {
+              redWine.push({ DISPLAY_NAME: wineInfo[0], COUNTRY: wineInfo[1] });
+            }
+          });
+
+          console.log("redWine: ", redWine);
+          console.log("whiteWine: ", whiteWine);
+          console.log("roseWine: ", roseWine);
+        }
+      });
+    }
+  });
+
   return (
     <Container>
       <WineNavBar openModal={openModal} closeModal={closeModal} />
@@ -29,22 +100,22 @@ function WineContent() {
 
       <SubContainer>
         <WineSuggestionColumn
-          name={"Red"}
+          name={"레드"}
           themeColor={"#58181F"}
           textColor={"white"}
-          items={sampleData.RED}
+          items={redWine}
         />
         <WineSuggestionColumn
-          name={"White"}
+          name={"화이트"}
           themeColor={"#EEEDC4"}
           textColor={"black"}
-          items={sampleData.WHITE}
+          items={whiteWine}
         />
         <WineSuggestionColumn
-          name={"Rosé"}
+          name={"로제"}
           themeColor={"#9d5c75"}
           textColor={"white"}
-          items={sampleData.ROSE}
+          items={roseWine}
         />
       </SubContainer>
     </Container>

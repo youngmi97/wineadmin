@@ -15,7 +15,7 @@ function MainContent() {
           <Info />
         </ColumnOne1>
         <ColumnTwo1>
-          <TitleText>Your Suggestions</TitleText>
+          <TitleText>추천한 와인</TitleText>
           <Suggestions />
         </ColumnTwo1>
       </SubContainer>
