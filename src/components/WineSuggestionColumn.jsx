@@ -1,22 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 // import { FaWineGlassAlt } from "react-icons/fa";
+import { MdOutlineAddBox } from "react-icons/md";
 import { themeColor, hoverEffect } from "../utils";
 import WineImage from "../assets/bottle_example.png";
+import AddModal from "./AddModal";
 
 //pass list of wines from props
 // populate Winecard as many as items from props.items
 
 function WineSuggestionColumn(props) {
+  const [showModal, setModalState] = useState(false);
+
+  const setAddModal = () => {
+    console.log("clicked");
+  };
+
+  function closeModal() {
+    setModalState(false);
+  }
+
+  function openModal(items) {
+    setModalState(true);
+  }
+
   return (
     <WineTypeCard themeColor={props.themeColor} textColor={props.textColor}>
+      {showModal ? <AddModal closeModal={closeModal} /> : null}
       <CardContent>
-        {/* <Chart>
-          <FaWineGlassAlt />
-        </Chart> */}
+        {/* <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignContent: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "2rem",
+          }}
+        >
+          <Earning>{props.name}</Earning>
+          <Icon onClick={setAddModal}>
+            <MdOutlineAddBox
+              style={{ height: 30, width: 30, color: "#484258" }}
+            />
+          </Icon>
+        </div> */}
+        <Icon onClick={openModal}>
+          <MdOutlineAddBox
+            style={{ height: 30, width: 30, color: "#484258" }}
+          />
+        </Icon>
         <Earning>{props.name}</Earning>
+
         {props.items.map((data) => (
-          <WineCard>
+          <WineCard key={data}>
             <SubContainer>
               <Avatar>
                 <img src={WineImage} alt="" />
@@ -50,6 +87,10 @@ const WineTypeCard = styled.div`
     width: 90%;
     height: 40rem;
   }
+`;
+
+const Icon = styled.div`
+  float: right;
 `;
 
 const CardContent = styled.div`
@@ -134,6 +175,7 @@ const SubContainerColumn = styled.div`
 
 const Earning = styled.h2`
   text-align: center;
+  justify-content: center;
 `;
 
 export default WineSuggestionColumn;

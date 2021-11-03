@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import WineNavBar from "./WineNavBar";
 import WineSuggestionColumn from "./WineSuggestionColumn";
@@ -8,13 +8,78 @@ import SearchModal from "./SearchModal";
 function WineContent() {
   const [showModal, setModalState] = useState(false);
   const [wineList, setWineList] = useState([]);
-  var roseWine = [];
-  var whiteWine = [];
-  var redWine = [];
 
-  // const [redWines, setRedWines] = useState([]);
-  // const [whiteWines, setWhiteWines] = useState([]);
-  // const [roseWines, setRoseWines] = useState([]);
+  const [redList, setRedList] = useState([]);
+  const [roseList, setRoseList] = useState([]);
+  const [whiteList, setWhiteList] = useState([]);
+
+  let roseWine = [];
+  let whiteWine = [];
+  let redWine = [];
+
+  useEffect(() => {
+    fetch(
+      `https://uidlxhemcj.execute-api.ap-northeast-2.amazonaws.com/dev/search-bar?id=${JSON.parse(
+        localStorage.getItem("winebar")
+      )}`
+    ).then((response) => {
+      if (response.ok) {
+        // console.log("response: ", response);
+        response.json().then((json) => {
+          if (json.body) {
+            localStorage.setItem("barData", JSON.stringify(json.body.Items[0]));
+
+            let rose = JSON.parse(localStorage.getItem("barData"))["ROSE"];
+            let white = JSON.parse(localStorage.getItem("barData"))["WHITE"];
+            let red = JSON.parse(localStorage.getItem("barData"))["RED"];
+
+            // console.log("ROSE: ", parseStringSet(rose));
+            rose = parseStringSet(rose);
+            rose.forEach(function (wine, index) {
+              const wineInfo = wine.split("_");
+              if (wineInfo[0] !== "") {
+                roseWine.push({
+                  DISPLAY_NAME: wineInfo[0],
+                  COUNTRY: wineInfo[1],
+                });
+              }
+            });
+
+            // console.log("RED: ", parseStringSet(red));
+            red = parseStringSet(red);
+            red.forEach(function (wine, index) {
+              const wineInfo = wine.split("_");
+              if (wineInfo[0] !== "") {
+                redWine.push({
+                  DISPLAY_NAME: wineInfo[0],
+                  COUNTRY: wineInfo[1],
+                });
+              }
+            });
+
+            // console.log("WHITE: ", parseStringSet(white));
+            white = parseStringSet(white);
+            white.forEach(function (wine, index) {
+              const wineInfo = wine.split("_");
+              if (wineInfo[0] !== "") {
+                whiteWine.push({
+                  DISPLAY_NAME: wineInfo[0],
+                  COUNTRY: wineInfo[1],
+                });
+              }
+            });
+
+            // console.log("redWine: ", redWine);
+            // console.log("whiteWine: ", whiteWine);
+            // console.log("roseWine: ", roseWine);
+            setRedList(redWine);
+            setWhiteList(whiteWine);
+            setRoseList(roseWine);
+          }
+        });
+      }
+    });
+  }, []);
 
   function parseStringSet(str) {
     return str.replace(/[^0-9 a-z A-Z _\,\.]+/g, "").split(",");
@@ -31,66 +96,6 @@ function WineContent() {
     setWineList(items);
   }
 
-  fetch(
-    `https://uidlxhemcj.execute-api.ap-northeast-2.amazonaws.com/dev/search-bar?id=${JSON.parse(
-      localStorage.getItem("winebar")
-    )}`
-  ).then((response) => {
-    if (response.ok) {
-      // console.log("response: ", response);
-      response.json().then((json) => {
-        if (json.body) {
-          // console.log(json.body.Items[0]);
-          // setBarData(json.body.Items[0]);
-          localStorage.setItem("barData", JSON.stringify(json.body.Items[0]));
-
-          let rose = JSON.parse(localStorage.getItem("barData"))["ROSE"];
-          let white = JSON.parse(localStorage.getItem("barData"))["WHITE"];
-          let red = JSON.parse(localStorage.getItem("barData"))["RED"];
-
-          // console.log("ROSE: ", parseStringSet(rose));
-          rose = parseStringSet(rose);
-          rose.forEach(function (wine, index) {
-            const wineInfo = wine.split("_");
-            if (wineInfo[0] !== "") {
-              roseWine.push({
-                DISPLAY_NAME: wineInfo[0],
-                COUNTRY: wineInfo[1],
-              });
-            }
-          });
-
-          // console.log("RED: ", parseStringSet(red));
-          red = parseStringSet(red);
-          // setRoseWines(parseStrngSet(roseWine));
-          red.forEach(function (wine, index) {
-            const wineInfo = wine.split("_");
-            if (wineInfo[0] !== "") {
-              whiteWine.push({
-                DISPLAY_NAME: wineInfo[0],
-                COUNTRY: wineInfo[1],
-              });
-            }
-          });
-
-          // console.log("WHITE: ", parseStringSet(white));
-          white = parseStringSet(white);
-          // setRoseWines(parseStrngSet(roseWine));
-          red.forEach(function (wine, index) {
-            const wineInfo = wine.split("_");
-            if (wineInfo[0] !== "") {
-              redWine.push({ DISPLAY_NAME: wineInfo[0], COUNTRY: wineInfo[1] });
-            }
-          });
-
-          console.log("redWine: ", redWine);
-          console.log("whiteWine: ", whiteWine);
-          console.log("roseWine: ", roseWine);
-        }
-      });
-    }
-  });
-
   return (
     <Container>
       <WineNavBar openModal={openModal} closeModal={closeModal} />
@@ -103,19 +108,19 @@ function WineContent() {
           name={"레드"}
           themeColor={"#58181F"}
           textColor={"white"}
-          items={redWine}
+          items={redList}
         />
         <WineSuggestionColumn
           name={"화이트"}
           themeColor={"#EEEDC4"}
           textColor={"black"}
-          items={whiteWine}
+          items={whiteList}
         />
         <WineSuggestionColumn
           name={"로제"}
           themeColor={"#9d5c75"}
           textColor={"white"}
-          items={roseWine}
+          items={roseList}
         />
       </SubContainer>
     </Container>

@@ -8,7 +8,7 @@ function Suggestions() {
   return (
     <YourProjects>
       <Project>
-        <Avatar>
+        {/* <Avatar>
           <img src={WineImage} alt="" />
         </Avatar>
         <Detail>
@@ -23,7 +23,7 @@ function Suggestions() {
         <Detail>
           <Title>Balgownie Estate, Shiraz, Bendigo</Title>
           <SubTitle>Balgownie Estate</SubTitle>
-        </Detail>
+        </Detail> */}
       </Project>
       <Linking to="/wines" style={{ textDecoration: "none", color: "white" }}>
         <AllProjects>보러가기</AllProjects>
